@@ -1,0 +1,7 @@
+elpa/
+private/
+snippets
+eshell
+semanticdb
+ede-projects.el
+.custom.el

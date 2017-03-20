@@ -1,0 +1,428 @@
+set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'mhinz/vim-startify'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'bling/vim-airline'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'scrooloose/nerdtree'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'rstacruz/sparkup'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'mattn/emmet-vim'
+Plugin 'kabbamine/vcoolor.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'guns/vim-sexp'
+Plugin 'mileszs/ack.vim'
+" Plugin 'Yggdroot/indentLine'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'SirVer/ultisnips'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-markdown'
+Plugin 'junegunn/vim-emoji'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'nono/jquery.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'sjl/gundo.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'nvie/vim-togglemouse'
+Plugin 'lepture/vim-jinja'
+Plugin 'othree/html5.vim'
+
+"--------------
+" Color Schemes
+"--------------
+" Plugin 'axiaoxin/favorite-vim-colorscheme'
+" Plugin 'rickharris/vim-blackboard'
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'rickharris/vim-monokai'
+" Plugin 'tpope/vim-vividchalk'
+" Plugin 'Lokaltog/vim-distinguished'
+Plugin 'chriskempson/vim-tomorrow-theme'
+" Plugin 'fisadev/fisa-vim-colorscheme'
+" Plugin 'AlessandroYorba/Despacio'
+
+"-------------
+" Robot framework
+"------------
+Plugin 'mfukar/robotframework-vim'
+
+call vundle#end()
+
+filetype plugin indent on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+""""""""""""""""""""""BASE CONFIG"""""""""""""""""""""""
+
+" 取消备份
+set nobackup
+set noswapfile
+
+let mapleader=","
+
+" 解决中文乱码
+set encoding=utf-8
+set fileencodings=utf-8,chinese,gbk,latin-1,gb2312,ucs-bom,cp936
+set fileformats=unix,dos,mac
+if has("win32")
+  set fileencoding=chinese
+else
+  set fileencoding=utf-8
+endif
+
+" 解决菜单乱码
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" 解决consle输出乱码
+language messages zh_CN.utf-8
+
+" 状态栏配置
+set laststatus=2
+
+" 打开语法高亮
+syntax enable
+
+" 开启语法检测
+syntax on
+
+" vimrc文件修改之后自动加载
+autocmd! bufwritepost .vimrc source %
+
+" 文件修改之后自动载入
+set autoread
+
+" yy直接复制到系统剪切板（For macvim）
+set clipboard=unnamed
+
+" 高亮搜索命中的文本
+set hlsearch
+
+" 随着键入即时搜索
+set incsearch
+
+" 搜索时忽略大小写
+set ignorecase
+
+" 有一个或以上大写字母时仍大小写敏感
+set smartcase
+
+set guifont=Menlo:h14
+set guioptions-=L
+
+" set background=dark
+" color Tomorrow-Night-Eighties
+color Tomorrow-Night-Bright
+" 使用自带配色
+"colorscheme elflord
+
+" 在状态栏显示正在输入的命令
+set showcmd
+set showmatch
+" :next, :make 命令之前自动保存
+set autowrite
+set mouse=a
+set history=1000
+set lines=50
+set columns=120
+set nofoldenable                      " disable folding"
+set confirm                           " prompt when existing from an unsaved file
+set backspace=indent,eol,start        " More powerful backspacing
+set t_Co=256                          " Explicitly tell vim that the terminal has 256 colors
+set mouse=a                           " use mouse in all modes
+set report=0                          " always report number of lines changed
+set nowrap                            " dont wrap lines
+set scrolloff=5                       " 5 lines above/below cursor when scrolling
+set number                            " show line numbers
+set showmatch                         " show matching bracket (briefly jump)
+set showcmd                           " show typed command in status bar
+set title                             " show file in titlebar
+set laststatus=2                      " use 2 lines for the status bar
+set matchtime=2                       " show matching bracket for 0.2 seconds
+set matchpairs+=<:>                   " specially for html
+set expandtab       " expand tab to space
+
+" set relativenumber
+set noerrorbells
+set novisualbell
+set autoindent
+set smartindent
+
+" 退格键可用
+set backspace=2
+
+" 退格键一次删掉4个空格
+set smarttab
+
+" 保存文件时自动删除行尾空格或Tab
+autocmd BufWritePre * :%s/\s\+$//e
+
+" 保存文件时自动删除末尾空行
+"autocmd BufWritePre * :%s/^$\n\+\%$//ge
+
+" 填充Tab
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set shiftround
+
+" 代码折叠 光标在缩进下方时用za命令折叠或展开
+set fdm=indent
+" 默认展开
+set foldlevel=99
+
+" highlight current line
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline
+set cursorcolumn
+
+
+" 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
+set t_ti= t_te=
+
+" 打开文件时始终跳转到上次光标所在位置
+autocmd BufReadPost *
+      \ if ! exists("g:leave_my_cursor_position_alone") |
+      \     if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \         exe "normal g'\"" |
+      \     endif |
+      \ endif
+
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
+
+"""""""""""""""""""""""""KEY MAPPING""""""""""""""""""""
+"Switch to current dir
+map <silent> <leader>cd :cd %:p:h<cr>
+
+"Remove the Windows ^M
+noremap <Leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
+
+"search word in whole page
+:vmap <silent> <leader>sf y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+:vmap <silent> <leader>sF y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+
+"remove all blank at line end
+nmap <F12> :%s/[ \t\r]\+$//g<CR>
+
+"Buffers shortcut
+nmap <S-L> :bnext<CR>
+nmap <S-H> :bprevious<CR>
+
+" 映射切换tab的键位
+nmap <S-J> :tabp<CR>
+nmap <S-K> :tabn<CR>
+
+" normal模式下Ctrl+c全选并复制到系统剪贴板(linux必须装有vim-gnome)
+nmap <C-c> gg"+yG
+
+" visual模式下Ctrl+c复制选中内容到剪贴板
+vmap <C-c> "+y
+
+" Ctrl+v原样粘贴剪切板内容
+inoremap <C-v> <ESC>"+pa
+
+" w!!写入只读文件
+cmap w!! w !sudo tee >/dev/null %
+
+" F2切换行号显示
+nnoremap <F2> :set nonu!<CR>:set foldcolumn=0<CR>
+
+" F3打开目录树
+nmap <silent> <F3> :NERDTreeToggle<CR>
+
+" F4显示TagList
+nmap <silent> <F4> :TagbarToggle<CR>
+
+" F5运行脚本
+if exists("$VIRTUAL_ENV")
+    autocmd FileType python map <buffer> <F5> :!$VIRTUAL_ENV'/bin/python' %<CR>
+else
+    autocmd FileType python map <buffer> <F5> :!python %<CR>
+endif
+
+" <F7> 拷贝粘贴代码不破坏缩进
+set pastetoggle=<F7>
+
+" <F8> sort import and auto pep8
+autocmd FileType python map <buffer> <F8> :!autopep8 -i -a --ignore=W690,E501 %;isort %;<CR><CR>
+
+" <F9> pep8 by yapf
+autocmd FileType python map <buffer> <F9> :!yapf -i % --style=pep8;isort %;<CR><CR>
+
+" 给当前单词添加引号
+nnoremap w" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap w' viw<esc>a'<esc>hbi'<esc>lel
+
+" 在Normal Mode和Visual/Select Mode下，利用Tab键和Shift-Tab键来缩进文本
+nnoremap > >>
+nnoremap < <<
+vnoremap > >gv
+vnoremap < <gv
+
+" 左右分割窗口Ctrl+w +v
+" 上下分割窗口Ctrl+w +s
+" 关闭窗口Ctrl+w  +q
+
+" quicker window switching
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" emoji
+imap <C-e> <C-X><C-U>
+
+nmap <leader>t :TagbarToggle<cr>
+nmap <leader>f :NERDTreeToggle<cr>
+nmap <leader>u :GundoToggle<cr>
+nmap <leader>iu :IndentGuidesToggle<cr>
+
+""""""""""""""""""""""""""""""PLUGIN CONFIG""""""""""""""""""""""""""
+" NerdCommenter
+let g:NERDSpaceDelims=1
+let NERDCompactSexyComs=1
+
+" NERDTREE
+" 退出最后一个buff时也退出nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDChristmasTree=0
+let NERDTreeWinSize=30
+let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+" let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
+let NERDTreeShowBookmarks=1
+let NERDTreeWinPos = "right"
+
+" CtrlP
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      " \ --ignore .git
+      " \ --ignore .gnupg
+      " \ --ignore .gem
+      " \ --ignore _build
+      " \ --ignore .node_modules
+      " \ --ignore .bower_components
+      " \ --ignore .node-gyp
+      " \ --ignore .rvm
+      " \ --ignore tmp
+      " \ --ignore .DS_Store
+"       \ -g ""'
+" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+"Ctrl-X Ctrl-U emoji补全
+set completefunc=emoji#complete
+
+" instant-markdown
+let g:instant_markdown_slow = 1
+
+hi Tb_Normal guifg=white ctermfg=white
+hi Tb_Changed guifg=green ctermfg=green
+hi Tb_VisibleNormal ctermbg=252 ctermfg=235
+hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
+
+" easy-motion
+let g:EasyMotion_leader_key = '<Leader>'
+
+" airline
+let g:airline_section_y = '%{strftime("%H:%M")}'
+" 开启tabline
+let g:airline#extensions#tabline#enabled = 1
+" tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_sep = ' '
+" tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" tabline中buffer显示编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" jedi
+autocmd FileType python setlocal completeopt-=preview
+let g:jedi#completions_command = "<C-n>"
+
+" gitgutter
+let g:gitgutter_sign_modified = '*'
+let g:gitgutter_sign_removed = '-'
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" vim-table-mode: markdown
+let g:table_mode_corner="|"
+
+" rainbow_parentheses
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" vCoolor.vim
+let g:vkoolor_map = '<leader>cp'
+let g:vcool_ins_rgb_map = '<leader>cpr'       " Insert rgb color.
+let g:vcool_ins_hsl_map = '<leader>cph'       " Insert hsl color.
+let g:vcool_ins_rgba_map = '<leader>cpra'      " Insert rgba color.
+
+autocmd BufEnter *.exs nnoremap <leader>t :wa <CR> :!mix test % <CR>
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
