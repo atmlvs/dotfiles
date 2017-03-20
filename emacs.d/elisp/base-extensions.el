@@ -187,7 +187,7 @@
 (use-package youdao-dictionary)
 (use-package plantuml-mode
   :config
-  (setq plantuml-jar-path "~/.emacs.d/utils/plantuml.8053.jar"))
+  (setq plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"))
 (use-package flycheck-plantuml)
 (use-package graphql-mode)
 (use-package graphviz-dot-mode)
