@@ -94,9 +94,6 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 # source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH=/usr/local/bin:$PATH
-#export ORACLE_HOME=/opt/oracle/instantclient_12_1
-#export DYLD_LIBRARY_PATH=$ORACLE_HOME
-#export LD_LIBRARY_PATH=$ORACLE_HOME
 
 function TUNABrew() { export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles; }
 
@@ -179,3 +176,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+source ~/dotfiles/localrc
