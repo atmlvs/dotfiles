@@ -93,13 +93,61 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 # VIRTUALENVWRAPPER_PYTHON=`which python3`
 # source /usr/local/bin/virtualenvwrapper.sh
 
-setproxy() {
-    export http_proxy=http://127.0.0.1:1080
-    export https_proxy=https://127.0.0.1:1080
+export PATH=/usr/local/bin:$PATH
+#export ORACLE_HOME=/opt/oracle/instantclient_12_1
+#export DYLD_LIBRARY_PATH=$ORACLE_HOME
+#export LD_LIBRARY_PATH=$ORACLE_HOME
+
+function TUNABrew() { export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles; }
+
+function ppgrep() {
+    if [[ $1 == "" ]]; then
+        PERCOL=percol
+    else
+        PERCOL="percol --query $1"
+    fi
+    ps aux | eval $PERCOL | awk '{ print $2 }'
 }
-noproxy() {
-    unset http_proxy
-    unset https_proxy
+
+function ppkill() {
+    if [[ $1 =~ "^-" ]]; then
+        QUERY=""            # options only
+    else
+        QUERY=$1            # with a query
+        [[ $# > 0 ]] && shift
+    fi
+    ppgrep $QUERY | xargs kill $*
+}
+
+function exists { which $1 &> /dev/null }
+
+if exists percol; then
+    function percol_select_history() {
+        local tac
+        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
+
+function pattach() {
+    if [[ $1 == "" ]]; then
+        PERCOL=percol
+    else
+        PERCOL="percol --query $1"
+    fi
+
+    sessions=$(tmux ls)
+    [ $? -ne 0 ] && return
+
+    session=$(echo $sessions | eval $PERCOL | cut -d : -f 1)
+    if [[ -n "$session" ]]; then
+        tmux att -t $session
+    fi
 }
 # autoload -U compinit && compinit
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
@@ -109,7 +157,25 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --cache=$HOME/.npm/.cache/cnpm \
   --disturl=https://npm.taobao.org/dist \
   --userconfig=$HOME/.cnpmrc"
-export PATH="$PYENV_ROOT/bin:$PATH"
+
+function setproxy() {
+    export http_proxy=http://127.0.0.1:1080
+    export https_proxy=http://127.0.0.1:1080
+}
+
+function noproxy() {
+    unset http_proxy
+    unset https_proxy
+}
+
+function apmproxy() {
+    apm config set proxy http://127.0.0.1:1080
+    apm config set https-proxy http://127.0.0.1:1080
+}
+
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
