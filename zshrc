@@ -5,10 +5,10 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="kolo"
-# ZSH_THEME="apple"
+ZSH_THEME="apple"
 # ZSH_THEME="half-life"
 # ZSH_THEME="jnrowe"
-ZSH_THEME="flazz"
+# ZSH_THEME="flazz"
 # ZSH_THEME="nicoulaj"
 # ZSH_THEME="steeef"
 
