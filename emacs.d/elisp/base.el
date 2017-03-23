@@ -3,10 +3,10 @@
                ;; ("http" . "10.144.1.10:8080")
                ;; ("https" . "10.144.1.10:8080")))
 (add-to-list 'package-archives
-         ;; '("melpa" . "http://melpa.org/packages/")
-         ;; '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-	 '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	 '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+         '("melpa" . "http://melpa.org/packages/")
+         '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+	 ;; '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	 ;; '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
 
 (when (not package-archive-contents)
   (package-refresh-contents))

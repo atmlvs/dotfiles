@@ -1,12 +1,30 @@
 (use-package spacemacs-theme
   :defer t
-  :init
-  (load-theme 'spacemacs-dark t))
-
-(use-package zenburn-theme
-  :defer t)
+  ;; :init (load-theme 'spacemacs-dark t)
+  ;; :init (load-theme 'spacemacs-light t)
+  )
 
 (use-package ample-theme
+  :init (progn
+	  (load-theme 'ample t t)
+	  (load-theme 'ample-light t t)
+	  ;; (enable-theme 'ample)
+	  ;; (enable-theme 'ample-light)
+	  )
+  :defer t
+  :ensure t)
+
+(use-package material-theme
+  :init (progn
+	  (load-theme 'material t)
+	  (load-theme 'material-light t)
+	  ;; (enable-theme 'material)
+	  (enable-theme 'material-light)
+	  )
+  :defer t
+  :ensure t)
+
+(use-package zenburn-theme
   :defer t)
 
 (use-package monokai-theme
@@ -39,9 +57,6 @@
   )
 
 (use-package jazz-theme
-  :defer t)
-
-(use-package material-theme
   :defer t)
 
 (provide 'base-theme)

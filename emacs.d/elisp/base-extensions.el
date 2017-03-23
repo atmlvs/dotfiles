@@ -3,7 +3,6 @@
   :bind
   ("C-c SPC" . ace-jump-mode))
 
-
 (use-package company
   :ensure t
   :init (global-company-mode)
@@ -34,9 +33,7 @@
 
 (use-package exec-path-from-shell
   :config
-  ;; Add GOPATH to shell
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-copy-env "GOPATH")
     (exec-path-from-shell-copy-env "PYTHONPATH")
     (exec-path-from-shell-initialize)))
 
@@ -45,7 +42,6 @@
   ("C-=" . er/expand-region))
 
 (use-package flycheck)
-
 
 (use-package helm
   :init
@@ -81,7 +77,6 @@
 (use-package helm-swoop
   :bind
   ("C-x c s" . helm-swoop))
-
 
 (use-package hlinum
   :config
@@ -234,7 +229,6 @@
 				       (holiday-fixed 1 1 "元旦")
 				       (holiday-lunar 1 15 "元宵节")
 				       (holiday-fixed 2 14 "情人节")
-				       (holiday-fixed 3 14 "白色情人节")
 				       (holiday-fixed 4 1 "愚人节")
 				       (holiday-fixed 5 1 "劳动节")
 				       (holiday-float 5 0 2 "母亲节")
