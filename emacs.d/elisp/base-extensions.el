@@ -5,8 +5,22 @@
 
 
 (use-package company
+  :ensure t
+  :init (global-company-mode)
   :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  (progn
+    (delete 'company-dabbrev company-backends)
+    (setq company-tooltip-align-annotations t
+	  company-tooltip-minimum-width 27
+	  company-idle-delay 0.3
+	  company-tooltip-limit 10
+	  company-minimum-prefix-length 2
+	  company-tooltip-flip-when-above t))
+   :bind (:map company-active-map
+              ("M-k" . company-select-next)
+              ("M-i" . company-select-previous)
+              ("TAB" . company-complete-selection))
+  :diminish company-mode)
 
 (use-package dashboard
   :config
@@ -52,7 +66,9 @@
          ("C-x c p" . helm-projectile-ag)
          ("C-x c k" . helm-show-kill-ring)
          :map helm-map
-         ("<tab>" . helm-execute-persistent-action)))
+         ("<tab>" . helm-execute-persistent-action)
+	 ("M-p" . helm-previous-page)
+	 ("M-n" . helm-next-page)))
 
 (use-package helm-ag
   :config
@@ -92,11 +108,19 @@
 (use-package magit-popup)
 
 (use-package multiple-cursors
+  :ensure t
   :bind
-  ("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this)
-  ("C-c C->" . mc/mark-all-like-this))
+  (("C-c o <SPC>" . mc/vertical-align-with-space)
+   ("C-c o a"     . mc/vertical-align)
+   ("C-c o l"     . mc/edit-lines)
+   ("C->"         . mc/mark-next-like-this)
+   ("C-<"         . mc/mark-previous-like-this)
+   ("C-c C->"     . mc/mark-all-like-this)
+   ("C-c o e"     . mc/mark-more-like-this-extended)
+   ("C-c o r"     . vr/mc-mark)
+   ("C-c o C-a"   . mc/edit-beginnings-of-lines)
+   ("C-c o C-e"   . mc/edit-ends-of-lines)
+   ("C-c o C-s"   . mc/mark-all-in-region)))
 
 (use-package neotree
   :config
@@ -132,11 +156,15 @@
 (use-package page-break-lines)
 
 (use-package projectile
+  :ensure t
   :config
+  (setq projectile-completion-system 'helm)
+  (projectile-global-mode)
+  (helm-projectile-on)
+  (setq projectile-enable-caching nil)
   (setq projectile-known-projects-file
         (expand-file-name "projectile-bookmarks.eld" temp-dir))
-
-  (projectile-global-mode))
+  :diminish (projectile-mode))
 
 (use-package recentf
   :config
@@ -146,10 +174,14 @@
   (recentf-mode 1))
 
 (use-package smartparens
+  :ensure t
   :init
-  (require 'smartparens-config)
+  (smartparens-global-mode)
+  (show-smartparens-global-mode)
   :config
-  (smartparens-global-mode t)
+  (require 'smartparens-config)
+  (setq sp-autoskip-closing-pair 'always)
+  :diminish (smartparens-mode)
   )
 
 (defun sp-web-mode-is-code-context (id action context)
@@ -298,8 +330,23 @@
   	    (lambda ()
   	      (setq web-mode-enable-css-colorization t)
   	      (setq web-mode-markup-indent-offset 2)
-	      ;; (setq web-mode-enable-auto-pairing nil)
+	      (setq web-mode-enable-auto-pairing nil)
   	      (setq web-mode-style-padding 2)
   	      (setq web-mode-script-padding 2))))
+
+(use-package hl-line
+  :init (global-hl-line-mode 1))
+
+(use-package highlight-numbers
+  :ensure t
+  :defer t
+  :init (add-hook 'prog-mode-hook #'highlight-numbers-mode))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :init
+  (dolist (hook '(text-mode-hook prog-mode-hook emacs-lisp-mode-hook))
+    (add-hook hook #'rainbow-delimiters-mode)))
 
 (provide 'base-extensions)

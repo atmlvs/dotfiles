@@ -3,8 +3,8 @@
                ;; ("http" . "10.144.1.10:8080")
                ;; ("https" . "10.144.1.10:8080")))
 (add-to-list 'package-archives
-         ;; '("melpa" . "https://melpa.org/packages/")
-         ;; '("elpy" . "http://jorgenschaefer.github.io/packages/")
+         ;; '("melpa" . "http://melpa.org/packages/")
+         ;; '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 	 '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 	 '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
 
@@ -25,6 +25,7 @@
 (set-terminal-coding-system  'utf-8)   ; pretty
 (set-keyboard-coding-system  'utf-8)   ; pretty
 (set-selection-coding-system 'utf-8)   ; please
+(prefer-coding-system        'utf-8)   ; with sugar on top
 ;; added
 (set-language-environment 'Chinese-GB)
 (set-clipboard-coding-system 'utf-8)
@@ -33,16 +34,17 @@
 (setq-default pathname-coding-system 'utf-8)
 (set-file-name-coding-system 'utf-8)
 
-(prefer-coding-system        'utf-8)   ; with sugar on top
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
-;; (set-face-attribute 'default nil
-		    ;; :family "Source Code Pro"
+(set-face-attribute 'default nil
+		    :family "Source Code Pro" :height 160)
 		    ;; :family "Consolas"
 		    ;; :height 140
 		    ;; :weight 'normal
-		    ;; :width 'condensed
-		    ;; )
+;; :width 'condensed)
+(set-face-attribute 'variable-pitch nil
+		    :family "Fira Sans" :height 140 :weight 'regular)
+
 ;; (set-face-foreground 'highlight "white")
 ;; (set-face-background 'highlight "blue")
 ;; (set-face-foreground 'region "cyan")
