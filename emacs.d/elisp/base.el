@@ -27,7 +27,7 @@
 (set-selection-coding-system 'utf-8)   ; please
 (prefer-coding-system        'utf-8)   ; with sugar on top
 ;; added
-(set-language-environment 'Chinese-GB)
+;; (set-language-environment 'Chinese-GB)
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -55,7 +55,7 @@
 (setq default-frame-alist '(
 			    ;; (left . 25)
 			    ;; (top . 45)
-			    (width . 120)
+			    (width . 90)
 			    (height . 35)
 			    ;; (cursor-color . "black")
                             ;; (vertical-scroll-bars . nil)
@@ -130,6 +130,8 @@
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(add-hook 'org-mode-hook '(lambda () (linum-mode 0)))
 
 ;; Set time mode
 (display-time-mode t)
