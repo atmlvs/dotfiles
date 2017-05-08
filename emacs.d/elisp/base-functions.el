@@ -66,4 +66,22 @@
     (delete-region beg end)
     (insert (mapconcat 'identity (shuffle-list list) "\n"))))
 
+;; ---------------------------------------------------------------------------
+;; New Shell
+;; ---------------------------------------------------------------------------
+(defun new-shell (name)
+  "Opens a new shell buffer with the given name in
+asterisks (*name*) in the current directory and changes the
+prompt to 'name>'."
+  (interactive "sName: ")
+  (pop-to-buffer (concat "*" name "*"))
+  (unless (eq major-mode 'shell-mode)
+    (shell (current-buffer))
+    (sleep-for 0 200)
+    (delete-region (point-min) (point-max))
+    (comint-simple-send (get-buffer-process (current-buffer))
+                        ;; (concat "export PS1=\"\[\033[0m\]" name "\[\033[0m\]:\[\033[1;35m\]\\W\[\033[0m\]\"")
+			;; for zsh
+			(concat "export PROMPT='$FG[154]" name ": %~%{$reset_color%} '"))))
+
 (provide 'base-functions)

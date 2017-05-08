@@ -132,7 +132,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-hook 'org-mode-hook '(lambda () (linum-mode 0)))
-
+(setq org-use-sub-superscripts nil)
+(setq org-export-with-sub-superscripts '{})
 ;; Set time mode
 (display-time-mode t)
 (setq display-time-24hr-format t)

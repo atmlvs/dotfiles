@@ -4,6 +4,7 @@
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
+(global-set-key (kbd "C-c s") 'new-shell)
 (global-set-key (kbd "M-/") 'undo-tree-visualize)
 (global-set-key (kbd "C-c j") 'pop-to-mark-command)
 (global-set-key (kbd "C-x t") 'eshell)

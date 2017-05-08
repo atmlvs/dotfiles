@@ -148,6 +148,9 @@ function pattach() {
 }
 # autoload -U compinit && compinit
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+# HEX_MIRROR=https://hexpm.upyun.com
+HEX_CDN=https://hexpm.upyun.com
+HEX_MIRROR=https://repo.hex.pm
 
 #alias for cnpm
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
