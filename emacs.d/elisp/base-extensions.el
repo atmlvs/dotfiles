@@ -128,7 +128,20 @@
 (use-package org
   :config
   (setq org-directory "~/org-files"
-        org-default-notes-file (concat org-directory "/todo.org"))
+        org-default-notes-file (concat org-directory "/todo.org")
+	org-plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"
+        plantuml-mode-debug-enabled t
+	org-confirm-babel-evaluate nil)
+  (require 'ob-python)
+  (require 'ob-plantuml)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . nil)
+     (python . t)
+     (plantuml . t)
+     (elixir . t)))
+  (add-hook 'org-mode-hook '(lambda () (linum-mode 0))
+	  'org-src-mode-hook '(lambda () (linum-mode 0)))
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
@@ -214,7 +227,9 @@
 (use-package youdao-dictionary)
 (use-package plantuml-mode
   :config
-  (setq plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"))
+  (setq plantuml-jar-path "~/.emacs.d/utils/plantuml.jar")
+  )
+
 (use-package flycheck-plantuml)
 (use-package graphql-mode)
 (use-package graphviz-dot-mode)

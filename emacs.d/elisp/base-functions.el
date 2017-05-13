@@ -47,7 +47,7 @@
 ;;----------------------------------------------------------------------------
 ;; Copy filename to clipboard
 ;;----------------------------------------------------------------------------
-(defun prelude-copy-file-name-to-clipboard ()
+(defun copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
   (let ((filename (if (equal major-mode 'dired-mode)
@@ -60,7 +60,7 @@
 ;;----------------------------------------------------------------------------
 ;; Shuffling lines
 ;;----------------------------------------------------------------------------
-(defun my/shuffle-lines-in-region (beg end)
+(defun shuffle-lines-in-region (beg end)
   (interactive "r")
   (let ((list (split-string (buffer-substring beg end) "[\r\n]+")))
     (delete-region beg end)

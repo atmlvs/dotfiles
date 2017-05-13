@@ -3,10 +3,10 @@
                ;; ("http" . "10.144.1.10:8080")
                ;; ("https" . "10.144.1.10:8080")))
 (add-to-list 'package-archives
-         '("melpa" . "http://melpa.org/packages/")
-         '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-	 ;; '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	 ;; '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+         ;; '("melpa" . "http://melpa.org/packages/")
+         ;; '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+	 '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	 '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -131,7 +131,9 @@
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(add-hook 'org-mode-hook '(lambda () (linum-mode 0)))
+(add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+(add-hook 'org-src-mode-hook (lambda () (linum-mode 0)))
+
 (setq org-use-sub-superscripts nil)
 (setq org-export-with-sub-superscripts '{})
 ;; Set time mode
@@ -139,6 +141,13 @@
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (setq display-time-interval 10)
+
+;; Language support by org-mode
+;; (org-babel-do-load-languages
+;;       'org-babel-load-languages
+;;       '((emacs-lisp . nil)
+;;         (python . t)
+;; 	(elixir . t)))
 
 (server-start)
 
