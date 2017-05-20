@@ -84,8 +84,7 @@
 
 (use-package linum
   :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
+  (setq linum-format " %3d "))
 
 (use-package magit
   :config
@@ -127,21 +126,21 @@
 
 (use-package org
   :config
-  (setq org-directory "~/org-files"
+  (setq org-directory "~/org-notes"
         org-default-notes-file (concat org-directory "/todo.org")
 	org-plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"
         plantuml-mode-debug-enabled t
 	org-confirm-babel-evaluate nil)
   (require 'ob-python)
   (require 'ob-plantuml)
+  (require 'ob-http)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . nil)
      (python . t)
      (plantuml . t)
-     (elixir . t)))
-  (add-hook 'org-mode-hook '(lambda () (linum-mode 0))
-	  'org-src-mode-hook '(lambda () (linum-mode 0)))
+     (elixir . t)
+     (http . t)))
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda))
@@ -357,5 +356,9 @@
   :init
   (dolist (hook '(text-mode-hook prog-mode-hook emacs-lisp-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
+
+(use-package restclient)
+(use-package ob-http)
+
 
 (provide 'base-extensions)

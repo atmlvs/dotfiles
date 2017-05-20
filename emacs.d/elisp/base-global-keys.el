@@ -11,4 +11,14 @@
 (setq set-mark-command-repeat-pop t)
 ;; (global-set-key (kbd "C->") 'ace-jump-mode)
 
+(global-set-key (kbd "M-N") 'windmove-down)
+(global-set-key (kbd "M-P") 'windmove-up)
+(global-set-key (kbd "M-B") 'windmove-left)
+(global-set-key (kbd "M-F") 'windmove-right)
+
+(global-set-key (kbd "C-M-S-N") (lambda () (interactive) (swap-with 'down)))
+(global-set-key (kbd "C-M-S-P") (lambda () (interactive) (swap-with 'up)))
+(global-set-key (kbd "C-M-S-B") (lambda () (interactive) (swap-with 'left)))
+(global-set-key (kbd "C-M-S-F") (lambda () (interactive) (swap-with 'right)))
+
 (provide 'base-global-keys)

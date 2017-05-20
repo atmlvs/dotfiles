@@ -18,6 +18,17 @@
 (defconst temp-dir (format "%s/cache" private-dir)
   "Hostname-based elisp temp directories")
 
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
+  (require 'exec-path-from-shell)
+  (let ((nix-vars '("NIX_LINK"
+                    "NIX_PATH"
+                    "SSL_CERT_FILE")))
+    (when (memq window-system '(mac ns))
+      (exec-path-from-shell-initialize) ; $PATH, $MANPATH and set exec-path
+      (mapcar 'exec-path-from-shell-copy-env nix-vars))))
+
 ;; Core settings
 ;; UTF-8 please
 (set-charset-priority 'unicode)
@@ -31,7 +42,8 @@
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
-(setq-default pathname-coding-system 'utf-8)
+(setq-default pathname-coding-system 'utf-8
+	      truncate-lines t)
 (set-file-name-coding-system 'utf-8)
 
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
@@ -75,6 +87,8 @@
       ring-bell-function                  'ignore
       fill-column                         80
       custom-file                         "~/.emacs.d/.custom.el"
+      custom-theme-directory "~/.emacs.d/themes/"
+      custom-safe-themes t
       default-directory                   "~/"
       ;; http://ergoemacs.org/emacs/emacs_stop_cursor_enter_prompt.html
       minibuffer-prompt-properties
@@ -123,16 +137,21 @@
 (menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
-(when (  fboundp 'scroll-bar-mode)
+(when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
 (show-paren-mode 1)
+(fringe-mode 0)
+;; No $ displayed for truncated lines
+(set-display-table-slot standard-display-table 0 ?\ )
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(add-hook 'org-mode-hook (lambda () (linum-mode 0)))
-(add-hook 'org-src-mode-hook (lambda () (linum-mode 0)))
+(global-linum-mode 0)
+;; (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+;; (add-hook 'org-src-mode-hook (lambda () (linum-mode 0)))
+;; (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 
 (setq org-use-sub-superscripts nil)
 (setq org-export-with-sub-superscripts '{})
@@ -141,13 +160,6 @@
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (setq display-time-interval 10)
-
-;; Language support by org-mode
-;; (org-babel-do-load-languages
-;;       'org-babel-load-languages
-;;       '((emacs-lisp . nil)
-;;         (python . t)
-;; 	(elixir . t)))
 
 (server-start)
 

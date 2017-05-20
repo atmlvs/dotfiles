@@ -6,8 +6,8 @@
 
 (use-package ample-theme
   :init (progn
-	  (load-theme 'ample t t)
-	  (load-theme 'ample-light t t)
+	  ;; (load-theme 'ample t t)
+	  ;; (load-theme 'ample-light t t)
 	  ;; (enable-theme 'ample)
 	  ;; (enable-theme 'ample-light)
 	  )
@@ -16,10 +16,10 @@
 
 (use-package material-theme
   :init (progn
-	  (load-theme 'material t)
-	  (load-theme 'material-light t)
+	  ;; (load-theme 'material t)
+	  ;; (load-theme 'material-light t)
 	  ;; (enable-theme 'material)
-	  (enable-theme 'material-light)
+	  ;; (enable-theme 'material-light)
 	  )
   :defer t
   :ensure t)
@@ -58,5 +58,13 @@
 
 (use-package jazz-theme
   :defer t)
+
+(use-package blackboard-theme
+    :init (progn
+	  (load-theme 'blackboard t)
+	  (enable-theme 'blackboard)
+	  )
+  :defer t
+  :ensure t)
 
 (provide 'base-theme)

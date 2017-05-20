@@ -84,4 +84,22 @@ prompt to 'name>'."
 			;; for zsh
 			(concat "export PROMPT='$FG[154]" name ": %~%{$reset_color%} '"))))
 
+;; ---------------------------------------------------------------------------
+;; Better commands for window management:
+;; swap-with taken from emacsd-tile 0.1 by marius a. eriksen
+;; (https://gist.github.com/287633)
+;; ---------------------------------------------------------------------------
+(defun swap-with (dir)
+  (interactive)
+  (let ((other-window (windmove-find-other-window dir)))
+    (when other-window
+      (let* ((this-window  (selected-window))
+             (this-buffer  (window-buffer this-window))
+             (other-buffer (window-buffer other-window))
+             (this-start   (window-start this-window))
+             (other-start  (window-start other-window)))
+        (set-window-buffer this-window  other-buffer)
+        (set-window-buffer other-window this-buffer)
+        (set-window-start  this-window  other-start)
+        (set-window-start  other-window this-start)))))
 (provide 'base-functions)
