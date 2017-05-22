@@ -315,7 +315,7 @@
 
 (use-package org-download
   :config
-  (setq-default org-download-image-dir "~/org-files/pic/"))
+  (setq-default org-download-image-dir "~/org-notes/pic/"))
 
 (use-package markdown-mode
   :ensure t
