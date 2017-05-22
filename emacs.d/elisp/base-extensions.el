@@ -359,6 +359,6 @@
 
 (use-package restclient)
 (use-package ob-http)
-
+(use-package ob-elixir)
 
 (provide 'base-extensions)
