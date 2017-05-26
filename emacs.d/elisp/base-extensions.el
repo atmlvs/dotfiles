@@ -127,6 +127,9 @@
 (use-package org
   :config
   (setq org-directory "~/org-notes"
+	org-agenda-files (list "~/org-notes/gtd.org"
+                               "~/org-notes/nokia.org"
+                               "~/org-notes/todo.org")
         org-default-notes-file (concat org-directory "/todo.org")
 	org-plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"
         plantuml-mode-debug-enabled t
@@ -357,6 +360,7 @@
   (dolist (hook '(text-mode-hook prog-mode-hook emacs-lisp-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
+(require 'ob-elixir)
 (use-package restclient)
 (use-package ob-http)
 (use-package ob-elixir)
