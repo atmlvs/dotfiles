@@ -18,17 +18,6 @@
 (defconst temp-dir (format "%s/cache" private-dir)
   "Hostname-based elisp temp directories")
 
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier nil)
-  (require 'exec-path-from-shell)
-  (let ((nix-vars '("NIX_LINK"
-                    "NIX_PATH"
-                    "SSL_CERT_FILE")))
-    (when (memq window-system '(mac ns))
-      (exec-path-from-shell-initialize) ; $PATH, $MANPATH and set exec-path
-      (mapcar 'exec-path-from-shell-copy-env nix-vars))))
-
 ;; Core settings
 ;; UTF-8 please
 (set-charset-priority 'unicode)

@@ -360,7 +360,6 @@
   (dolist (hook '(text-mode-hook prog-mode-hook emacs-lisp-mode-hook))
     (add-hook hook #'rainbow-delimiters-mode)))
 
-(require 'ob-elixir)
 (use-package restclient)
 (use-package ob-http)
 (use-package ob-elixir)
