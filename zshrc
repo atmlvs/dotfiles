@@ -58,16 +58,18 @@ plugins=(git autojump osx mvn zsh-completions zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 export CLICOLOR=1
 export EDITOR=vim
 export HISTFILESIZE=42195
+exportTERM=xterm-color
+source /usr/local/bin/virtualenvwrapper.sh
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+#export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -82,8 +84,6 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
 # alias -s py=vim
 # alias -s js=vim
 # alias -s c=vim
@@ -92,10 +92,6 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 # VIRTUALENVWRAPPER_PYTHON=`which python3`
 # source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH=/usr/local/bin:$PATH
-
-function TUNABrew() { export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles; }
 
 function ppgrep() {
     if [[ $1 == "" ]]; then
@@ -147,7 +143,6 @@ function pattach() {
     fi
 }
 # autoload -U compinit && compinit
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 # HEX_MIRROR=https://hexpm.upyun.com
 HEX_CDN=https://hexpm.upyun.com
 HEX_MIRROR=https://repo.hex.pm
@@ -175,9 +170,5 @@ function apmproxy() {
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
+export EDITOR='subl -w'
 source ~/dotfiles/localrc
