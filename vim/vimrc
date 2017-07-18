@@ -10,10 +10,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'gmarik/Vundle.vim'
-
+" Recommend plugins start
 Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+"Plugin 'vim-gruvbox-git
+"Plugin 'vim-airline-gruvbox-git
+"Plugin 'vim-youcompleteme-git
+
 Plugin 'sheerun/vim-polyglot'
 Plugin 'scrooloose/nerdtree'
 Plugin 'elixir-lang/vim-elixir'
@@ -27,10 +33,8 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'guns/vim-sexp'
 Plugin 'mileszs/ack.vim'
-" Plugin 'Yggdroot/indentLine'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SirVer/ultisnips'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-markdown'
 Plugin 'junegunn/vim-emoji'
 Plugin 'davidhalter/jedi-vim'
@@ -42,7 +46,6 @@ Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nvie/vim-togglemouse'
