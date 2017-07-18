@@ -1,0 +1,27 @@
+export ANT_ROOT=/usr/local/Cellar/ant/1.9.6/bin
+export PATH=$ANT_ROOT:$PATH
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
+export ANDROID_SDK_ROOT=/usr/local/Cellar/android-sdk/24.4.1
+export PATH=$ANDROID_SDK_ROOT:$PATH
+export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+
+# export PYENV_ROOT=/usr/local/var/pyenv
+# eval "$(pyenv init -)"
+export JAVA_HOME=`/usr/libexec/java_home`
+# mount the android file image
+function mountAndroid { hdiutil attach /Volumes/DataDisk/android.dmg.sparseimage -mountpoint /Volumes/android; }
+# unmount the android file image
+function umountAndroid() { hdiutil detach /Volumes/android; }
+export PATH=~/bin:$PATH
+
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+
+function TUNABrew() { export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles; }
+alias vim='mvim -v'
+alias vi='mvim -v'
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
