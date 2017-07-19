@@ -12,6 +12,15 @@ shopt -s extglob
 shopt -s histappend
 shopt -s hostcomplete
 
+case "$TERM" in
+    xterm)
+        export TERM=xterm-256color
+        ;;
+    screen)
+        export TERM=screen-256color
+        ;;
+esac
+
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
@@ -24,6 +33,7 @@ alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=au
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias grep='grep --color=tty -d skip'
+alias vi='vim'
 
 ESC=$'['
 END_ESC=m
