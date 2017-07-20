@@ -3,6 +3,7 @@
 #
 complete -cf sudo
 
+stty -ixon
 shopt -s cdspell
 shopt -s checkwinsize
 shopt -s cmdhist
@@ -11,6 +12,9 @@ shopt -s expand_aliases
 shopt -s extglob
 shopt -s histappend
 shopt -s hostcomplete
+shopt -s autocd
+
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 case "$TERM" in
     xterm)
@@ -34,6 +38,48 @@ alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias grep='grep --color=tty -d skip'
 alias vi='vim'
+alias r="ranger"
+alias mutt="mutt -F ~/.config/scripts/mutt/muttrc"
+alias mocp="mocp --config ~/.config/scripts/moc/config"
+alias calcurse="calcurse -D ~/.config/scripts/calcurse"
+alias weechat="weechat -d ~/.config/scripts/weechat"
+alias tmux="tmux -f ~/.config/i3/scripts/tmux.conf"
+
+#Term only
+alias mute="pamixer -m"
+alias vd="pamixer -d 10"
+alias vu="pamixer -i 10"
+alias p="mocp -G &> /dev/null"
+alias next="mocp -f &> /dev/null"
+alias prev="mocp -r &> /dev/null"
+alias mnt="sudo bash ~/.config/i3/scripts/mount.sh"
+alias umnt="sudo bash ~/.config/i3/scripts/unmount.sh"
+alias sdn="sudo shutdown now"
+
+alias screenfetch="screenfetch -t"
+alias yt="youtube-dl -ic"
+alias yta="youtube-dl -xic"
+
+alias newnet="sudo systemctl restart NetworkManager"
+
+alias youtube="youtube-viewer"
+alias YT="youtube-viewer"
+alias syt="youtube-viewer"
+
+alias TC='find . -maxdepth 1 -regextype gnu-awk -regex "^.*\.(pyc|pyo|bak|swp|aux|log|nav|out|snm|toc|bcf|run\.xml|synctex\.gz|blg|bbl)" -delete'
+
+alias ethspeed="speedometer -r enp0s25"
+
+note() { echo "$@" >> ~/notes ;}
+
+alias extract="~/.config/i3/script/extract.sh"
+
+backup() { cp $1 $1.bu ;}
+
+alias mailsync="bash ~/.config/i3/scripts/mailsyncloop.sh"
+
+alias wifispeed="speedometer -r wlp2s0"
+
 
 ESC=$'['
 END_ESC=m
@@ -125,12 +171,10 @@ colors() {
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-export http_proxy=http://10.144.1.10:8080
-export https_proxy=$http_proxy
-
 if [ -d ~/.bash.d ]; then
     for i in ~/.bash.d/*; do
         [ -f "${i}" ] && source "${i}"
     done
 fi
 
+[[ -f ~/dotfiles/.localrc ]] && . ~/dotfiles/.localrc
