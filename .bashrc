@@ -177,4 +177,9 @@ if [ -d ~/.bash.d ]; then
     done
 fi
 
+if [[ $TERM == xterm-termite ]]; then
+  . /etc/profile.d/vte.sh
+  __vte_prompt_command
+fi
+
 [[ -f ~/dotfiles/.localrc ]] && . ~/dotfiles/.localrc
