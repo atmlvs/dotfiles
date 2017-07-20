@@ -107,7 +107,7 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 " 解决consle输出乱码
-language messages zh_CN.utf-8
+"language messages zh_CN.utf-8
 
 " 状态栏配置
 set laststatus=2
@@ -391,7 +391,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "let g:airline_theme='gruvbox'
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 "let g:ycm_confirm_extra_conf=0
 "let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 "let g:ycm_add_preview_to_completeopt=0
