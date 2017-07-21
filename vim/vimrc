@@ -11,40 +11,44 @@ call vundle#begin()
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'gmarik/Vundle.vim'
 " Recommend plugins start
+Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
+Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'mileszs/ack.vim'
 "Plugin 'vim-gruvbox-git
 "Plugin 'vim-airline-gruvbox-git
-"Plugin 'vim-youcompleteme-git
+" Install YouCompleteMe for any unknown issue
+" ./install.py -all
+" git submodule update --init --recursive
+Plugin 'Valloric/YouCompleteMe'
+" Or install jedi-vim in Arch
+Plugin 'davidhalter/jedi-vim'
 
 Plugin 'sheerun/vim-polyglot'
-Plugin 'scrooloose/nerdtree'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'mattn/emmet-vim'
 Plugin 'kabbamine/vcoolor.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'guns/vim-sexp'
-Plugin 'mileszs/ack.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-markdown'
 Plugin 'junegunn/vim-emoji'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'nono/jquery.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic'
 Plugin 'bronson/vim-trailing-whitespace'
@@ -389,9 +393,8 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 " tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
 "let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts=0
+"let g:airline_powerline_fonts=0
 "let g:ycm_confirm_extra_conf=0
 "let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 "let g:ycm_add_preview_to_completeopt=0
@@ -401,8 +404,12 @@ let g:airline_powerline_fonts=0
 "set background=dark
 
 " jedi
-autocmd FileType python setlocal completeopt-=preview
-let g:jedi#completions_command = "<C-n>"
+"autocmd FileType python setlocal completeopt-=preview
+" let g:jedi#completions_command = "<C-n>"
+let g:jedi#completions_enabled = 0
+
+"YouCompleteMe
+" let g:ycm_python_binary_path = 'python2'
 
 " gitgutter
 let g:gitgutter_sign_modified = '*'

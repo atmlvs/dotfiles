@@ -14,7 +14,7 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s autocd
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+#export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 case "$TERM" in
     xterm)
@@ -30,7 +30,7 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 export JAVA_FONTS=/usr/share/fonts/TTF
 
-alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman -Syyuu  && 
+alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman -Syyuu  &&
 sudo pacman -Suu'
 
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -63,8 +63,6 @@ alias yta="youtube-dl -xic"
 alias newnet="sudo systemctl restart NetworkManager"
 
 alias youtube="youtube-viewer"
-alias YT="youtube-viewer"
-alias syt="youtube-viewer"
 
 alias TC='find . -maxdepth 1 -regextype gnu-awk -regex "^.*\.(pyc|pyo|bak|swp|aux|log|nav|out|snm|toc|bcf|run\.xml|synctex\.gz|blg|bbl)" -delete'
 
