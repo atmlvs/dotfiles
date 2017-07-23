@@ -5,10 +5,10 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="kolo"
-ZSH_THEME="apple"
+# ZSH_THEME="apple"
 # ZSH_THEME="half-life"
 # ZSH_THEME="jnrowe"
-# ZSH_THEME="flazz"
+ZSH_THEME="flazz"
 # ZSH_THEME="nicoulaj"
 # ZSH_THEME="steeef"
 
@@ -83,6 +83,8 @@ export LANG=en_US.UTF-8
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias vi='vim'
+alias git-cleanup="git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d"
 
 # alias -s py=vim
 # alias -s js=vim
@@ -172,10 +174,10 @@ function apmproxy() {
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 source ~/dotfiles/.localrc
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1

@@ -1,6 +1,5 @@
 set nocompatible
-filetype on
-filetype plugin on
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -12,6 +11,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Recommend plugins start
 Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'mhinz/vim-startify'
 Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
@@ -20,7 +20,8 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+" Plugin 'mileszs/ack.vim'
 "Plugin 'vim-gruvbox-git
 "Plugin 'vim-airline-gruvbox-git
 " Install YouCompleteMe for any unknown issue
@@ -49,9 +50,8 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic'
-Plugin 'bronson/vim-trailing-whitespace'
+"Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'lepture/vim-jinja'
 Plugin 'othree/html5.vim'
@@ -67,7 +67,7 @@ Plugin 'rickharris/vim-monokai'
 " Plugin 'Lokaltog/vim-distinguished'
 Plugin 'chriskempson/vim-tomorrow-theme'
 " Plugin 'fisadev/fisa-vim-colorscheme'
-" Plugin 'AlessandroYorba/Despacio'
+Plugin 'AlessandroYorba/Despacio'
 
 "-------------
 " Robot framework
@@ -77,6 +77,7 @@ Plugin 'mfukar/robotframework-vim'
 call vundle#end()
 
 filetype plugin indent on
+filetype plugin on
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -171,7 +172,7 @@ set mouse=a                           " use mouse in all modes
 set report=0                          " always report number of lines changed
 set nowrap                            " dont wrap lines
 set scrolloff=5                       " 5 lines above/below cursor when scrolling
-set number                            " show line numbers
+set number ruler                            " show line numbers
 set relativenumber
 set showmatch                         " show matching bracket (briefly jump)
 set showcmd                           " show typed command in status bar
@@ -191,9 +192,10 @@ set softtabstop=4
 set scrolloff=8
 set sidescrolloff=10
 set noshowmode
-
 set timeoutlen=1000
 set ttimeoutlen=0
+set ttyfast lazyredraw
+set splitbelow splitright
 
 " 退格键可用
 set backspace=2
@@ -280,13 +282,13 @@ inoremap <C-v> <ESC>"+pa
 cmap w!! w !sudo tee >/dev/null %
 
 " F2切换行号显示
-nnoremap <F2> :set nonu!<CR>:set foldcolumn=0<CR>
+" nnoremap <F2> :set nonu!<CR>:set foldcolumn=0<CR>
 
 " F3打开目录树
-nmap <silent> <F3> :NERDTreeToggle<CR>
+" nmap <silent> <F3> :NERDTreeToggle<CR>
 
 " F4显示TagList
-nmap <silent> <F4> :TagbarToggle<CR>
+" nmap <silent> <F4> :TagbarToggle<CR>
 
 " F5运行脚本
 if exists("$VIRTUAL_ENV")
@@ -354,20 +356,20 @@ let NERDTreeWinPos = "right"
 
 " CtrlP
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_cmd = 'CtrlPMixed'
-" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      " \ --ignore .git
-      " \ --ignore .gnupg
-      " \ --ignore .gem
-      " \ --ignore _build
-      " \ --ignore .node_modules
-      " \ --ignore .bower_components
-      " \ --ignore .node-gyp
-      " \ --ignore .rvm
-      " \ --ignore tmp
-      " \ --ignore .DS_Store
-"       \ -g ""'
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .gnupg
+      \ --ignore .gem
+      \ --ignore _build
+      \ --ignore .node_modules
+      \ --ignore .bower_components
+      \ --ignore .node-gyp
+      \ --ignore .rvm
+      \ --ignore tmp
+      \ --ignore .DS_Store
+      \ -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 "Ctrl-X Ctrl-U emoji补全
 set completefunc=emoji#complete
@@ -401,7 +403,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 "set completeopt-=preview
 "let g:gruvbox_contrast_dark='neutral'
 "colorscheme gruvbox
-"set background=dark
+" set background=dark
 
 " jedi
 "autocmd FileType python setlocal completeopt-=preview
@@ -463,11 +465,16 @@ endif
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-function TrimWhitespace()
-  %s/\s*$//
-  ''
-:endfunction
-command! Trim call TrimWhitespace()
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.ex :call DeleteTrailingWS()
+autocmd BufWrite *.exs :call DeleteTrailingWS()
+autocmd BufWrite *.elm :call DeleteTrailingWS()
+command! Trim call DeleteTrailingWS()
 
 :noremap <F3> :set nonumber! nonumber?<CR>
 
@@ -545,4 +552,8 @@ autocmd FileType html inoremap ;ul <ul><Enter><li></li><Enter></ul><Enter><Enter
 autocmd FileType html inoremap ;li <Esc>o<li></li><Esc>F>a
 autocmd FileType html inoremap ;ol <ol><Enter><li></li><Enter></ol><Enter><Enter><++><Esc>03kf<i
 
+"""END
+
+"""Elixir
+autocmd BufEnter *.exs nnoremap <leader>t :wa <CR> :!mix test % <CR>
 """END
