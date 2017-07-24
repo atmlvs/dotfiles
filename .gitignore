@@ -1,3 +1,14 @@
 .config/google-chrome/
 .config/scripts
 .localrc
+.config/clipit/
+.config/dconf/
+.config/dmenu-recent/
+.config/gconf/
+.config/pulse/
+.config/ranger/bookmarks
+.config/ranger/rc.conf
+.config/ranger/tagged
+.config/user-dirs.dirs
+.config/user-dirs.locale
+.config/vlc/

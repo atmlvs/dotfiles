@@ -85,6 +85,54 @@ export LANG=en_US.UTF-8
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias vi='vim'
 alias git-cleanup="git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d"
+alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman -Syyuu  &&
+sudo pacman -Suu'
+
+alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias grep='grep --color=tty -d skip'
+alias vi='vim'
+alias r="ranger"
+alias mutt="mutt -F ~/.config/scripts/mutt/muttrc"
+alias mocp="mocp --config ~/.config/scripts/moc/config"
+alias calcurse="calcurse -D ~/.config/scripts/calcurse"
+alias weechat="weechat -d ~/.config/scripts/weechat"
+alias tmux="tmux -f ~/.config/scripts/tmux.conf"
+
+#Term only
+alias mute="pamixer -m"
+alias vd="pamixer -d 10"
+alias vu="pamixer -i 10"
+alias p="mocp -G &> /dev/null"
+alias next="mocp -f &> /dev/null"
+alias prev="mocp -r &> /dev/null"
+alias mnt="sudo bash ~/.config/scripts/mount.sh"
+alias umnt="sudo bash ~/.config/scripts/unmount.sh"
+alias sdn="sudo shutdown now"
+
+alias screenfetch="screenfetch -t"
+alias yt="youtube-dl -ic"
+alias yta="youtube-dl -xic"
+
+alias newnet="sudo systemctl restart NetworkManager"
+
+alias youtube="youtube-viewer"
+
+alias TC='find . -maxdepth 1 -regextype gnu-awk -regex "^.*\.(pyc|pyo|bak|swp|aux|log|nav|out|snm|toc|bcf|run\.xml|synctex\.gz|blg|bbl)" -delete'
+
+alias ethspeed="speedometer -r enp0s25"
+
+note() { echo "$@" >> ~/notes ;}
+
+alias extract="~/.config/script/extract.sh"
+
+backup() { cp $1 $1.bu ;}
+
+alias mailsync="bash ~/.config/scripts/mailsyncloop.sh"
+
+alias wifispeed="speedometer -r wlp2s0"
+
 
 # alias -s py=vim
 # alias -s js=vim
