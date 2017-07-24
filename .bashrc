@@ -43,7 +43,7 @@ alias mutt="mutt -F ~/.config/scripts/mutt/muttrc"
 alias mocp="mocp --config ~/.config/scripts/moc/config"
 alias calcurse="calcurse -D ~/.config/scripts/calcurse"
 alias weechat="weechat -d ~/.config/scripts/weechat"
-alias tmux="tmux -f ~/.config/i3/scripts/tmux.conf"
+alias tmux="tmux -f ~/.config/scripts/tmux.conf"
 
 #Term only
 alias mute="pamixer -m"
@@ -52,8 +52,8 @@ alias vu="pamixer -i 10"
 alias p="mocp -G &> /dev/null"
 alias next="mocp -f &> /dev/null"
 alias prev="mocp -r &> /dev/null"
-alias mnt="sudo bash ~/.config/i3/scripts/mount.sh"
-alias umnt="sudo bash ~/.config/i3/scripts/unmount.sh"
+alias mnt="sudo bash ~/.config/scripts/mount.sh"
+alias umnt="sudo bash ~/.config/scripts/unmount.sh"
 alias sdn="sudo shutdown now"
 
 alias screenfetch="screenfetch -t"
@@ -70,11 +70,11 @@ alias ethspeed="speedometer -r enp0s25"
 
 note() { echo "$@" >> ~/notes ;}
 
-alias extract="~/.config/i3/script/extract.sh"
+alias extract="~/.config/script/extract.sh"
 
 backup() { cp $1 $1.bu ;}
 
-alias mailsync="bash ~/.config/i3/scripts/mailsyncloop.sh"
+alias mailsync="bash ~/.config/scripts/mailsyncloop.sh"
 
 alias wifispeed="speedometer -r wlp2s0"
 
