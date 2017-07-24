@@ -1,1 +1,3 @@
-localrc
+.config/google-chrome/
+.config/scripts
+.localrc
