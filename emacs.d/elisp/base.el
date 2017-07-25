@@ -39,7 +39,7 @@
 
 (setq fonts
       (cond ((eq system-type 'darwin)     '("Source Code Pro"    "STHeiti"))
-            ((eq system-type 'gnu/linux)  '("Menlo"     "WenQuanYi Zen Hei"))
+            ;; ((eq system-type 'gnu/linux)  '("Menlo"     "WenQuanYi Zen Hei"))
             ((eq system-type 'windows-nt) '("Consolas"  "Microsoft Yahei"))))
 (set-face-attribute 'default nil :font
                     (format "%s:pixelsize=%d" (car fonts) 17))

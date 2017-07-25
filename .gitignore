@@ -12,3 +12,6 @@
 .config/user-dirs.dirs
 .config/user-dirs.locale
 .config/vlc/
+.config/configstore/
+.config/mimeapps.list
+.config/wall.png

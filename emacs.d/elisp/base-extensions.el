@@ -21,10 +21,6 @@
               ("TAB" . company-complete-selection))
   :diminish company-mode)
 
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook))
-
 (use-package ediff
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
