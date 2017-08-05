@@ -10,7 +10,7 @@ clickable_url = true
 font = Monospace 12
 #font = Hack 12
 browser = google-chrome-stable
-scrollback_lines = 999999
+scrollback_lines = 99999
 search_wrap = true
 #icon_name = terminal
 #geometry = 640x480
@@ -38,11 +38,13 @@ filter_unmatched_urls = true
 #cursor = #dcdccc
 #cursor_foreground = #dcdccc
 foreground = #dcdccc
-foreground_bold = #ffffff
+#foreground = #ffffff
+#foreground_bold = #ffffff
 #background = #3f3f3f
+#background = #000000
 
 # 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.8)
+background = rgba(00, 00, 00, 0.8)
 
 # if unset, will reverse foreground and background
 highlight = #2f2f2f
@@ -87,7 +89,7 @@ color15 = #ffffff
 
 [hints]
 #font = Monospace 12
-#foreground = #dcdccc
+foreground = #55ffff
 #background = #3f3f3f
 #active_foreground = #e68080
 #active_background = #3f3f3f
