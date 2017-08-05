@@ -22,3 +22,4 @@
 .config/pcmanfm/
 .config/xfce4/
 .config/gtk-3.0/bookmarks
+.config/htop/htoprc
