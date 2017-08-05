@@ -221,6 +221,7 @@ function apmproxy() {
 }
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias qrcode='f() { echo $1 | curl -F-=\<- qrenco.de };f'
 
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
