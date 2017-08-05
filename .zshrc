@@ -82,70 +82,17 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias vi='vim'
 alias git-cleanup="git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d"
-alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman -Syyuu  &&
-sudo pacman -Suu'
 
-alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias grep='grep --color=tty -d skip'
-alias vi='vim'
-alias r="ranger"
-alias mutt="mutt -F ~/.config/scripts/mutt/muttrc"
-alias mocp="mocp --config ~/.config/scripts/moc/config"
-alias calcurse="calcurse -D ~/.config/scripts/calcurse"
-alias weechat="weechat -d ~/.config/scripts/weechat"
-alias tmux="tmux -f ~/.config/scripts/tmux.conf"
-
-#Term only
-alias mute="pamixer -m"
-alias vd="pamixer -d 10"
-alias vu="pamixer -i 10"
-alias p="mocp -G &> /dev/null"
-alias next="mocp -f &> /dev/null"
-alias prev="mocp -r &> /dev/null"
-alias mnt="sudo bash ~/.config/scripts/mount.sh"
-alias umnt="sudo bash ~/.config/scripts/unmount.sh"
-alias sdn="sudo shutdown now"
-
-alias screenfetch="screenfetch -t"
-alias yt="youtube-dl -ic"
-alias yta="youtube-dl -xic"
-
-alias newnet="sudo systemctl restart NetworkManager"
-
-alias youtube="youtube-viewer"
-
-alias TC='find . -maxdepth 1 -regextype gnu-awk -regex "^.*\.(pyc|pyo|bak|swp|aux|log|nav|out|snm|toc|bcf|run\.xml|synctex\.gz|blg|bbl)" -delete'
-
-alias ethspeed="speedometer -r enp0s25"
-
-note() { echo "$@" >> ~/notes ;}
-
-alias extract="~/.config/script/extract.sh"
-
-backup() { cp $1 $1.bu ;}
-
-alias mailsync="bash ~/.config/scripts/mailsyncloop.sh"
-
-alias wifispeed="speedometer -r wlp2s0"
-
-
-# alias -s py=vim
-# alias -s js=vim
-# alias -s c=vim
-# alias -s txt=vim
-
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-# VIRTUALENVWRAPPER_PYTHON=`which python3`
-# source /usr/local/bin/virtualenvwrapper.sh
+alias -s py=vim
+alias -s js=vim
+alias -s c=vim
+alias -s txt=vim
 
 export PATH=/usr/local/bin:$PATH
-
-function TUNABrew() { export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles; }
+alias qrcode='f() { printf $1 | curl -F-=\<- qrenco.de };f'
+alias getip='curl curlmyip.net'
 
 function ppgrep() {
     if [[ $1 == "" ]]; then
@@ -196,8 +143,6 @@ function pattach() {
         tmux att -t $session
     fi
 }
-# autoload -U compinit && compinit
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
 #alias for cnpm
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
@@ -205,23 +150,73 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --disturl=https://npm.taobao.org/dist \
   --userconfig=$HOME/.cnpmrc"
 
-function setproxy() {
-    export http_proxy=http://127.0.0.1:1080
-    export https_proxy=http://127.0.0.1:1080
+
+mac_config() {
+    alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+    function setproxy() {
+        export http_proxy=http://127.0.0.1:1080
+        export https_proxy=http://127.0.0.1:1080
+    }
+
+    function noproxy() {
+        unset http_proxy
+        unset https_proxy
+    }
+
+    function apmproxy() {
+        apm config set proxy http://127.0.0.1:1080
+        apm config set https-proxy http://127.0.0.1:1080
+    }
 }
 
-function noproxy() {
-    unset http_proxy
-    unset https_proxy
-}
+arch_config() {
+    alias fixit='sudo rm -f /var/lib/pacman/db.lck && sudo pacman-mirrors -g && sudo pacman -Syyuu  &&
+sudo pacman -Suu'
+    alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+    alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+    alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+    alias grep='grep --color=tty -d skip'
+    alias r="ranger"
+    alias mutt="mutt -F ~/.config/scripts/mutt/muttrc"
+    alias mocp="mocp --config ~/.config/scripts/moc/config"
+    alias calcurse="calcurse -D ~/.config/scripts/calcurse"
+    alias weechat="weechat -d ~/.config/scripts/weechat"
+    alias tmux="tmux -f ~/.config/scripts/tmux.conf"
 
-function apmproxy() {
-    apm config set proxy http://127.0.0.1:1080
-    apm config set https-proxy http://127.0.0.1:1080
-}
+    #Term only
+    alias mute="pamixer -m"
+    alias vd="pamixer -d 10"
+    alias vu="pamixer -i 10"
+    alias p="mocp -G &> /dev/null"
+    alias next="mocp -f &> /dev/null"
+    alias prev="mocp -r &> /dev/null"
+    alias mnt="sudo bash ~/.config/scripts/mount.sh"
+    alias umnt="sudo bash ~/.config/scripts/unmount.sh"
+    alias sdn="sudo shutdown now"
 
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias qrcode='f() { echo $1 | curl -F-=\<- qrenco.de };f'
+    alias screenfetch="screenfetch -t"
+    alias yt="youtube-dl -ic"
+    alias yta="youtube-dl -xic"
+
+    alias newnet="sudo systemctl restart NetworkManager"
+
+    alias youtube="youtube-viewer"
+
+    alias TC='find . -maxdepth 1 -regextype gnu-awk -regex "^.*\.(pyc|pyo|bak|swp|aux|log|nav|out|snm|toc|bcf|run\.xml|synctex\.gz|blg|bbl)" -delete'
+
+    alias ethspeed="speedometer -r enp0s25"
+
+    note() { echo "$@" >> ~/notes ;}
+
+    alias extract="~/.config/script/extract.sh"
+
+    backup() { cp $1 $1.bu ;}
+
+    alias mailsync="bash ~/.config/scripts/mailsyncloop.sh"
+
+    alias wifispeed="speedometer -r wlp2s0"
+}
 
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
