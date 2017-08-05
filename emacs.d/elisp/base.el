@@ -171,6 +171,7 @@
 		    'face 'egoge-display-time)))
 
 (setq tramp-default-method "ssh")
+(setq delete-by-moving-to-trash t)
 
 (server-start)
 
