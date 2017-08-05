@@ -27,8 +27,8 @@ font xft:Noto Sans 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
-#bindsym $mod+Return exec termite
+#bindsym $mod+Return exec terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -293,7 +293,7 @@ exec_always --no-startup-id fix_xcursor
 # Change the variable name at the place you want to match the color
 # of your terminal like this:
 # [example]
-# If you want your bar to have the same background color as your 
+# If you want your bar to have the same background color as your
 # terminal background change the line 362 from:
 # background  $i3_background
 # to:
@@ -318,7 +318,7 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# Color palette used for i3 
+# Color palette used for i3
 # Variables are set based on the documentation:
 # https://i3wm.org/dovs/userguide.html#variables
 # Changing the value of one of the variables will
@@ -401,7 +401,7 @@ gaps outer -4
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
@@ -457,7 +457,7 @@ set $beg --no-startup-id mpc seek 0%
 
 ##For moc:
 #set $music urxvt -e mocp --config ~/.config/scripts/moc/config
-#set $pause --no-startup-id mocp -G 
+#set $pause --no-startup-id mocp -G
 #set $next --no-startup-id mocp -f
 #set $prev --no-startup-id mocp -r
 #set $lilfor --no-startup-id mocp -k 10

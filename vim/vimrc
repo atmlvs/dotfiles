@@ -252,7 +252,7 @@ autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 tex
 map <silent> <leader>cd :cd %:p:h<cr>
 
 "Remove the Windows ^M
-noremap <Leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
+noremap <leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 
 "search word in whole page
 :vmap <silent> <leader>sf y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -383,7 +383,7 @@ hi Tb_VisibleNormal ctermbg=252 ctermfg=235
 hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
 " easy-motion
-let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<leader>'
 
 " airline
 let g:airline_section_y = '%{strftime("%H:%M")}'

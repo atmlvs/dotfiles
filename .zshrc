@@ -7,8 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="kolo"
 # ZSH_THEME="apple"
 # ZSH_THEME="half-life"
-# ZSH_THEME="jnrowe"
-ZSH_THEME="flazz"
+ZSH_THEME="jnrowe"
+# ZSH_THEME="flazz"
 # ZSH_THEME="nicoulaj"
 # ZSH_THEME="steeef"
 
