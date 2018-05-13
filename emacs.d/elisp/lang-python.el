@@ -11,7 +11,6 @@
     :init
     (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
     :config
-    (elpy-enable)
     (setq elpy-rpc-backend "jedi")
     (setq python-shell-interpreter "~/.pyenv/shims/python3.6")
     ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
@@ -19,6 +18,7 @@
     :bind (:map elpy-mode-map
 	      ("M-." . elpy-goto-definition)
 	      ("M-," . pop-tag-mark)))
+  (elpy-enable)
   )
 
 (use-package pip-requirements
@@ -27,16 +27,17 @@
 
 (use-package py-autopep8)
 
-
-(use-package pyenv-mode
-  :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
-  :config
-  (add-hook 'python-mode-hook (lambda () (pyenv-mode 1)))
-  :bind
-  ("C-x p e" . pyenv-activate-current-project)
-  ("C-x p p" . pyenv-mode-set))
+(if (eq system-type 'darwin)
+    (use-package pyenv-mode
+      :init
+      (add-to-list 'exec-path "~/.pyenv/shims")
+      (setenv "WORKON_HOME" "~/.pyenv/versions/")
+      :config
+      (add-hook 'python-mode-hook (lambda () (pyenv-mode 1)))
+      :bind
+      ("C-x p e" . pyenv-activate-current-project)
+      ("C-x p p" . pyenv-mode-set))
+  )
 
 (defun pyenv-init()
   (setq global-pyenv (replace-regexp-in-string "\n" "" (shell-command-to-string "pyenv global")))
@@ -58,8 +59,10 @@
             (pyvenv-workon pyenv-current-version)
             (message (concat "Setting virtualenv to " pyenv-current-version))))))))
 
-(add-hook 'after-init-hook 'pyenv-init)
-(add-hook 'projectile-after-switch-project-hook 'pyenv-activate-current-project)
+(if (eq system-type 'darwin)
+    (add-hook 'after-init-hook 'pyenv-init)
+  (add-hook 'projectile-after-switch-project-hook 'pyenv-activate-current-project)
+  )
 
 (provide 'lang-python)
 ;;; base-python.el ends here

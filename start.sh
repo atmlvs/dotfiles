@@ -1,6 +1,6 @@
 #!/bin/sh
-sudo mount -t vboxsf Downloads ~/Downloads
-sudo mount -t vboxsf Projects ~/Projects
+sudo mount -t vboxsf wallpapers_1920x1080 ~/Downloads/wallpapers_1920x1080
+sudo mount -t vboxsf sharevm ~/Downloads/sharevm
 wallpaper=`find ~/Downloads/wallpapers_1920x1080 -type f | shuf -n 1`
 echo "use wallpaper $wallpaper"
 feh --bg-scale "$wallpaper"

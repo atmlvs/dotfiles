@@ -39,10 +39,10 @@
 
 (setq fonts
       (cond ((eq system-type 'darwin)     '("Source Code Pro"    "STHeiti"))
-            ;; ((eq system-type 'gnu/linux)  '("Menlo"     "WenQuanYi Zen Hei"))
+            ((eq system-type 'gnu/linux)  '("Menlo"     "WenQuanYi Zen Hei"))
             ((eq system-type 'windows-nt) '("Consolas"  "Microsoft Yahei"))))
 (set-face-attribute 'default nil :font
-                    (format "%s:pixelsize=%d" (car fonts) 17))
+                    (format "%s:pixelsize=%d" (car fonts) 18))
 		    ;; :family "Consolas"
 		    ;; :height 140
 		    ;; :weight 'normal
@@ -171,6 +171,7 @@
 		    'face 'egoge-display-time)))
 
 (setq tramp-default-method "ssh")
+(setq delete-by-moving-to-trash t)
 
 (server-start)
 

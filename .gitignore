@@ -15,3 +15,11 @@
 .config/configstore/
 .config/mimeapps.list
 .config/wall.png
+.config/erl_observer/
+.config/libfm/
+.config/menus/
+.config/morc_menu/
+.config/pcmanfm/
+.config/xfce4/
+.config/gtk-3.0/bookmarks
+.config/htop/htoprc
