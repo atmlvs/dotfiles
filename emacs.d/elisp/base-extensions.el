@@ -124,8 +124,7 @@
   :config
   (setq org-directory "~/org-notes"
 	org-agenda-files (list "~/org-notes/gtd.org"
-                               "~/org-notes/nokia.org"
-                               "~/org-notes/todo.org")
+			       "~/org-notes/todo.org")
         org-default-notes-file (concat org-directory "/todo.org")
 	org-plantuml-jar-path "~/.emacs.d/utils/plantuml.jar"
 	org-use-fast-todo-selection t ;C-c C-t KEY

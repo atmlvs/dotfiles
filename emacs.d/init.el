@@ -34,3 +34,4 @@
 ;; {% for lang in languages %}
 ;; (require 'lang-{{ lang }})
 ;; {% endfor %}
+(put 'downcase-region 'disabled nil)

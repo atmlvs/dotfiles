@@ -61,9 +61,9 @@
 ;; (set-face-background 'secondary-selection "darkblue")
 
 (setq default-frame-alist '(
-			    ;; (left . 25)
-			    ;; (top . 45)
-			    (width . 90)
+			    (left . 0)
+			    (top . 22)
+			    (width . 120)
 			    (height . 35)
 			    ;; (cursor-color . "black")
                             ;; (vertical-scroll-bars . nil)
