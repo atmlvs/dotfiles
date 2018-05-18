@@ -63,7 +63,7 @@
 (setq default-frame-alist '(
 			    (left . 0)
 			    (top . 22)
-			    (width . 120)
+			    (width . 96)
 			    (height . 35)
 			    ;; (cursor-color . "black")
                             ;; (vertical-scroll-bars . nil)

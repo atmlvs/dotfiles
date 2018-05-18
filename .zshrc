@@ -218,11 +218,4 @@ arch_config() {
     alias wifispeed="speedometer -r wlp2s0"
 }
 
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-
 source ~/dotfiles/.localrc
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PATH="/usr/local/sbin:$PATH"

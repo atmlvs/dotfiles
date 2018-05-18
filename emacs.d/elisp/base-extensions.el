@@ -28,10 +28,14 @@
   (setq ediff-diff-options "-w"))
 
 (use-package exec-path-from-shell
+  :if (memq window-system '(ns mac))
+  :ensure t
   :config
-  (when (memq window-system '(mac ns))
-    (exec-path-from-shell-copy-env "PYTHONPATH")
-    (exec-path-from-shell-initialize)))
+  (setq exec-path-from-shell-copy-env "PYTHONPATH")
+  (setq exec-path-from-shell-check-startup-files nil)
+  (setq exec-path-from-shell-arguments '("-l" ))
+  (exec-path-from-shell-initialize)
+  )
 
 (use-package expand-region
   :bind
@@ -168,9 +172,10 @@
 
 (use-package org-projectile
   :config
-  (org-projectile:per-repo)
-  (setq org-projectile:per-repo-filename "todo.org"
-	org-agenda-files (append org-agenda-files (org-projectile:todo-files))))
+  ;; (org-projectile:per-repo)
+  ;; (setq org-projectile:per-repo-filename "todo.org"
+  ;; org-agenda-files (append org-agenda-files (org-projectile:todo-files)))
+  )
 
 (use-package org-bullets
   :config
@@ -310,7 +315,7 @@
   :bind
   ("C-c m c" . mc/edit-lines))
 
-(use-package chinese-pyim
+(use-package pyim
   ;; :ensure nil
   :config
   (use-package chinese-pyim-basedict
