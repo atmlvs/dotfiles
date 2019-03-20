@@ -21,9 +21,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rking/ag.vim'
-" Plugin 'mileszs/ack.vim'
-"Plugin 'vim-gruvbox-git
-"Plugin 'vim-airline-gruvbox-git
 " Install YouCompleteMe for any unknown issue
 " ./install.py -all
 " git submodule update --init --recursive
@@ -31,6 +28,7 @@ Plugin 'Valloric/YouCompleteMe'
 " Or install jedi-vim in Arch
 Plugin 'davidhalter/jedi-vim'
 
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'rstacruz/sparkup'
 Plugin 'tpope/vim-endwise'
@@ -51,7 +49,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
-"Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'nvie/vim-togglemouse'
 Plugin 'lepture/vim-jinja'
 Plugin 'othree/html5.vim'
@@ -147,6 +144,7 @@ set ignorecase
 set smartcase
 
 set guifont=Menlo:h14
+" set guifont=Monaco\ 12
 set guioptions-=L
 
 " set background=dark
@@ -397,21 +395,36 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "let g:airline_theme='gruvbox'
 "let g:airline_powerline_fonts=0
-"let g:ycm_confirm_extra_conf=0
-"let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-"let g:ycm_add_preview_to_completeopt=0
-"set completeopt-=preview
-"let g:gruvbox_contrast_dark='neutral'
-"colorscheme gruvbox
-" set background=dark
 
+" python
+let python_highligh_all=1
 " jedi
 "autocmd FileType python setlocal completeopt-=preview
 " let g:jedi#completions_command = "<C-n>"
 let g:jedi#completions_enabled = 0
 
 "YouCompleteMe
+let g:ycm_python_interpreter_path=''
+let g:ycm_python_sys_path=[]
+let g:ycm_extra_conf_vim_data = [
+            \ 'g:ycm_python_interpreter_path',
+            \ 'g:ycm_python_sys_path']
+let g:ycm_global_ycm_extra_conf = '~/.global_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_python_binary_path = 'python2'
+"let g:ycm_confirm_extra_conf=0
+"let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+"let g:ycm_add_preview_to_completeopt=0
+
+" python with virtualenv support
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
 
 " gitgutter
 let g:gitgutter_sign_modified = '*'
@@ -557,3 +570,4 @@ autocmd FileType html inoremap ;ol <ol><Enter><li></li><Enter></ol><Enter><Enter
 """Elixir
 autocmd BufEnter *.exs nnoremap <leader>t :wa <CR> :!mix test % <CR>
 """END
+au FileType json setlocal equalprg=python\ -m\ json.tool
