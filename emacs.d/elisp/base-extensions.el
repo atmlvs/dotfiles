@@ -1,4 +1,3 @@
-
 (use-package ace-jump-mode
   :bind
   ("C-c SPC" . ace-jump-mode))
@@ -352,20 +351,6 @@
   :config
   (use-package markdown-mode+)
   )
-
-(use-package web-mode
-  :mode (("\\.html?\\'" . web-mode)
-         ("\\.jinja\\'" . web-mode)
-         ("\\.eex\\'" . web-mode))
-  :config
-  (add-hook 'web-mode-hook 'turn-off-smartparens-mode)
-  (add-hook 'web-mode-hook
-  	    (lambda ()
-  	      (setq web-mode-enable-css-colorization t)
-  	      (setq web-mode-markup-indent-offset 2)
-	      (setq web-mode-enable-auto-pairing nil)
-  	      (setq web-mode-style-padding 2)
-  	      (setq web-mode-script-padding 2))))
 
 (use-package hl-line
   :init (global-hl-line-mode 1))

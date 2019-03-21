@@ -26,7 +26,6 @@
 (set-keyboard-coding-system  'utf-8)   ; pretty
 (set-selection-coding-system 'utf-8)   ; please
 (prefer-coding-system        'utf-8)   ; with sugar on top
-;; added
 ;; (set-language-environment 'Chinese-GB)
 (set-clipboard-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
@@ -124,7 +123,7 @@
  make-backup-files                  t
  create-lockfiles                   nil
  backup-directory-alist            `((".*" . ,(concat temp-dir "/backup")))
- auto-save-file-name-transforms    `((".*" ,(concat temp-dir "/auto-save-list/") t)))
+ auto-save-file-name-transforms    `((".*" ,(concat temp-dir "/autosavelist/") t)))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode t)
@@ -145,7 +144,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (global-linum-mode 0)
-;; (add-hook 'org-mode-hook (lambda () (linum-mode 0)))
+(add-hook 'org-mode-hook (lambda () (linum-mode 0)))
 ;; (add-hook 'org-src-mode-hook (lambda () (linum-mode 0)))
 ;; (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 

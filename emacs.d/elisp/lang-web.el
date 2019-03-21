@@ -5,6 +5,8 @@
   :mode
   (("\\.js\\'" . web-mode)
    ("\\.html?\\'" . web-mode)
+   ("\\.jinja\\'" . web-mode)
+   ("\\.eex\\'" . web-mode))
    ("\\.phtml?\\'" . web-mode)
    ("\\.tpl\\.php\\'" . web-mode)
    ("\\.[agj]sp\\'" . web-mode)
@@ -17,8 +19,16 @@
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
         web-mode-code-indent-offset 2)
-
+  (add-hook 'web-mode-hook 'turn-off-smartparens-mode)
   (add-hook 'web-mode-hook 'jsx-flycheck)
+  (add-hook 'web-mode-hook
+  	    (lambda ()
+  	      (setq web-mode-enable-css-colorization t)
+  	      (setq web-mode-markup-indent-offset 2)
+	      (setq web-mode-enable-auto-pairing nil)
+  	      (setq web-mode-style-padding 2)
+  	      (setq web-mode-script-padding 2))))
+
 
   ;; highlight enclosing tags of the element under cursor
   (setq web-mode-enable-current-element-highlight t)
