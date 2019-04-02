@@ -355,18 +355,8 @@ let NERDTreeWinPos = "right"
 " CtrlP
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .gnupg
-      \ --ignore .gem
-      \ --ignore _build
-      \ --ignore .node_modules
-      \ --ignore .bower_components
-      \ --ignore .node-gyp
-      \ --ignore .rvm
-      \ --ignore tmp
-      \ --ignore .DS_Store
-      \ -g ""'
+let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_root_markers = ['pom.xml']
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 "Ctrl-X Ctrl-U emoji补全
@@ -471,9 +461,27 @@ let g:vcool_ins_hsl_map = '<leader>cph'       " Insert hsl color.
 let g:vcool_ins_rgba_map = '<leader>cpra'      " Insert rgba color.
 
 autocmd BufEnter *.exs nnoremap <leader>t :wa <CR> :!mix test % <CR>
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+        \ --ignore .git
+        \ --ignore .gnupg
+        \ --ignore .gem
+        \ --ignore _build
+        \ --ignore .node_modules
+        \ --ignore .bower_components
+        \ --ignore .node-gyp
+        \ --ignore .rvm
+        \ --ignore tmp
+        \ --ignore .DS_Store
+        \ -g ""'
+  let g:ctrlp_use_caching = 0
+  let g:ag_working_path_mode="r"
 endif
+
+nnoremap \ :Ag<SPACE>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
