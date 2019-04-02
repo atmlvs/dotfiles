@@ -12,7 +12,8 @@
     (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
     :config
     (setq elpy-rpc-backend "jedi")
-    ;; (setq python-shell-interpreter "$(asdf which python)")
+    ;; (setq python-shell-interpreter "")
+    (setq python-shell-interpreter "$(asdf which python)")
     ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
     ;;flycheck-python-flake8-executable "/usr/local/bin/flake8"
     :bind (:map elpy-mode-map

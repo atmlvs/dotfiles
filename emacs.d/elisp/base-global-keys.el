@@ -9,7 +9,7 @@
 (global-set-key (kbd "C-c j") 'pop-to-mark-command)
 (global-set-key (kbd "C-x t") 'eshell)
 (setq set-mark-command-repeat-pop t)
-;; (global-set-key (kbd "C->") 'ace-jump-mode)
+(global-set-key (kbd "C->") 'ace-jump-mode)
 
 (global-set-key (kbd "M-N") 'windmove-down)
 (global-set-key (kbd "M-P") 'windmove-up)
