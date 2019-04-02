@@ -6,7 +6,8 @@
          ;; '("melpa" . "http://melpa.org/packages/")
          ;; '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 	 '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	 '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+	 ;; '("gnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+	 )
 
 (when (not package-archive-contents)
   (package-refresh-contents))
